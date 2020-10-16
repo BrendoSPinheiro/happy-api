@@ -8,6 +8,6 @@ const upload = multer(multerConfig);
 
 router.get('/orphanages', OrphanageController.index);
 router.get('/orphanages/:id', OrphanageController.show);
-router.post('/orphanages', upload.array('images') ,OrphanageController.store);
+router.post('/orphanages', upload.array('images'), OrphanageController.store);
 
 export default router;

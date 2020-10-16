@@ -1,16 +1,15 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import * as Yup from 'yup';
 import OrphanageModel from '../models/Orphanage';
 import OrphanageView from '../views/OrphanageView';
-import * as Yup from 'yup';
 
 class OrphanageController {
-
   async index(req: Request, res: Response) {
     const orphanageRepository = getRepository(OrphanageModel);
 
     const orphanages = await orphanageRepository.find({
-      relations: ['images']
+      relations: ['images'],
     });
 
     res.json(OrphanageView.renderMany(orphanages));
@@ -21,17 +20,16 @@ class OrphanageController {
 
     const orphanageRepository = getRepository(OrphanageModel);
 
-
     const orphanage = await orphanageRepository.findOneOrFail(id, {
-      relations: ['images']
+      relations: ['images'],
     });
 
     res.json(OrphanageView.render(orphanage));
   }
-  
+
   async store(req: Request, res: Response) {
     const orphanageRepository = getRepository(OrphanageModel);
-    const { 
+    const {
       name,
       phone,
       latitude,
@@ -44,9 +42,7 @@ class OrphanageController {
 
     const requestImages = req.files as Express.Multer.File[];
 
-    const images = requestImages.map(image => {
-      return { path: image.filename };
-    })
+    const images = requestImages.map((image) => ({ path: image.filename }));
 
     const data = {
       name,
@@ -58,7 +54,7 @@ class OrphanageController {
       opening_hours,
       open_on_weekends,
       images,
-    }
+    };
 
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -72,13 +68,13 @@ class OrphanageController {
       images: Yup.array(
         Yup.object().shape({
           path: Yup.string().required(),
-        })
-      )
+        }),
+      ),
     });
 
     await schema.validate(data, {
       abortEarly: false,
-    })
+    });
 
     const orphanage = orphanageRepository.create(data);
 
