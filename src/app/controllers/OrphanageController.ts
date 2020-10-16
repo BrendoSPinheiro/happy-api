@@ -33,6 +33,7 @@ class OrphanageController {
     const orphanageRepository = getRepository(OrphanageModel);
     const { 
       name,
+      phone,
       latitude,
       longitude,
       about,
@@ -49,6 +50,7 @@ class OrphanageController {
 
     const data = {
       name,
+      phone,
       latitude,
       longitude,
       about,
@@ -60,6 +62,7 @@ class OrphanageController {
 
     const schema = Yup.object().shape({
       name: Yup.string().required(),
+      phone: Yup.string().required(),
       latitude: Yup.number().required(),
       longitude: Yup.number().required(),
       about: Yup.string().required().max(300),
