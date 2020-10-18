@@ -6,6 +6,7 @@ class OrphanageView {
     return {
       id: orphanage.id,
       name: orphanage.name,
+      phone: orphanage.phone,
       latitude: orphanage.latitude,
       longitude: orphanage.longitude,
       about: orphanage.about,
