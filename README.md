@@ -26,7 +26,7 @@ Responsible for the business rules of the application, connection to the databas
 # <p id='routes'>🛣 Routes</p>
 
 |route|HTTP Method|description
-|:---|:---:|:---:|:---:
+|:---|:---:|:---:
 |`/orphanages`|GET|Lists orphanages.
 |`/orphanages/:id`|GET|Return one orphanage.
 |`/orphanages`|POST|Create a new orphanage.
