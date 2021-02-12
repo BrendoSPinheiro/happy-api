@@ -73,7 +73,7 @@ $ yarn ts-node-dev ./node_modules/typeorm/cli.js migration:run
 ```
 > See more information on [TypeORM Migrations](https://typeorm.io/#/migrations).
 
-# <p id='run-api'> 👨🏽‍💻 Run API</p>
+# <p id='run-api'>👨🏽‍💻 Run API</p>
 
 ```
 # yarn
